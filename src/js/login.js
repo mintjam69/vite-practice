@@ -17,7 +17,10 @@
 // Клік по кнопці logout повертає все до початкового вигляду і видаляє дані користувача
 // з локального сховища.
 
-import { refs } from "./refs"
+import { refs } from './refs';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import { saveInLS } from './storage';
 console.log(refs);
 
 const USER_DATA = {
@@ -25,13 +28,33 @@ const USER_DATA = {
   password: 'secret',
 };
 
-refs.form.addEventListener("submit", onFormSubmit) 
-function onFormSubmit(event) {
-  event.preventDefault()
+const LS_KEY = 'user-data';
 
-  const emailValue = event.target.elements.email.value.trim()
-  const passwordValue = event.target.elements.password.value.trim()
+refs.form.addEventListener('submit', onFormSubmit);
+function onFormSubmit(event) {
+  event.preventDefault();
+
+  const emailValue = event.target.elements.email.value.trim();
+  const passwordValue = event.target.elements.password.value.trim();
+
+  if (emailValue === '' || passwordValue === '') {
+    iziToast.warning({
+      message: 'Fill all fields!',
+      position: 'topRight',
+    });
+    return;
+  }
+  if (emailValue !== USER_DATA.email || passwordValue !== USER_DATA.password) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Invalid data!',
+      position: 'topRight',
+    });
+    return;
+  }
+  saveInLS(LS_KEY, { email: emailValue, password: passwordValue });
+  refs.buttonFirst.textContent = 'Logout';
+  refs.inputEmail.setAttribute('readonly', true);
+  refs.inputPassword.setAttribute('readonly', true);
   console.log(emailValue, passwordValue);
 }
-
-
