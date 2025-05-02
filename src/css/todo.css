@@ -1,0 +1,56 @@
+/* Основні стилі для форми завдань */
+.task-form {
+    width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стилі для поля вводу */
+.task-form input[type='text'] {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Стилі для кнопки */
+.task-form button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.task-form button:hover {
+    background-color: #45a049;
+}
+
+/* Список завдань */
+#task-list {
+    width: 400px;
+    margin: 20px auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Стиль елементів списку */
+#task-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+#task-list li:nth-child(odd) {
+    background-color: #f9f9f9;
+}

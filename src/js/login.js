@@ -20,7 +20,7 @@
 import { refs } from './refs';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { saveInLS, getFromLs } from './storage';
+import { saveInLS, getFromLs, removeFromLs } from './storage';
 
 console.log(refs);
 
@@ -34,6 +34,15 @@ const LS_KEY = 'user-data';
 refs.form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
+
+  if (refs.buttonFirst.textContent === 'Logout') {
+    removeFromLs(LS_KEY);
+    refs.form.reset();
+    refs.buttonFirst.textContent = 'Login';
+    refs.inputEmail.removeAttribute('readonly');
+    refs.inputPassword.removeAttribute('readonly');
+    return;
+  }
 
   const emailValue = event.target.elements.email.value.trim();
   const passwordValue = event.target.elements.password.value.trim();
@@ -61,9 +70,9 @@ function onFormSubmit(event) {
 }
 
 const savedData = getFromLs(LS_KEY);
-if (savedData){
-  refs.inputEmail.value = savedData.email || "";
-  refs.inputPassword.value = savedData.password || "";
+if (savedData) {
+  refs.inputEmail.value = savedData.email || '';
+  refs.inputPassword.value = savedData.password || '';
   refs.buttonFirst.textContent = 'Logout';
   refs.inputEmail.setAttribute('readonly', true);
   refs.inputPassword.setAttribute('readonly', true);
