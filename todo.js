@@ -1,0 +1,2 @@
+import{r as e,s as r}from"./assets/storage-BsKeap_u.js";/* empty css                      */import{i}from"./assets/vendor-I1I71QQ2.js";const a=[],n="tasks";e.taskForm.addEventListener("submit",m);function m(t){t.preventDefault();const s=t.target.elements.taskName.value.trim();if(s===""){i.warning({message:"Enter something for add",position:"topRight"});return}const o={text:s,id:Date.now()};a.push(o),r(n,a),e.taskForm.reset()}
+//# sourceMappingURL=todo.js.map
