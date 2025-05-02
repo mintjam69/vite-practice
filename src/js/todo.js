@@ -8,12 +8,14 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { refs } from './refs';
-import { saveInLS } from './storage';
+import { getFromLs, saveInLS } from './storage';
 
-const tasks = [];
 const LS_TASKS_KEY = 'tasks';
+let tasks = getFromLs(LS_TASKS_KEY) || [];
 
+refs.taskList.innerHTML = createTasksMarkup(tasks);
 refs.taskForm.addEventListener('submit', addTask);
+refs.taskList.addEventListener('click', deleteTask);
 
 function addTask(event) {
   event.preventDefault();
@@ -30,5 +32,29 @@ function addTask(event) {
   const task = { text: taskValue, id: Date.now() };
   tasks.push(task);
   saveInLS(LS_TASKS_KEY, tasks);
+  refs.taskList.innerHTML = createTasksMarkup(tasks);
   refs.taskForm.reset();
+}
+
+function deleteTask(event) {
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+
+  tasks = tasks.filter(task => task.id !== +event.target.id);
+
+  refs.taskList.innerHTML = createTasksMarkup(tasks);
+  saveInLS(LS_TASKS_KEY, tasks);
+}
+
+function createTasksMarkup(arr) {
+  return arr
+    .map(
+      ({ text, id }) => `
+  <li>
+  ${text} <button id="${id}">Delete</button>
+  </li>
+  `
+    )
+    .join('');
 }
