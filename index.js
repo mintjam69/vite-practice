@@ -1,0 +1,2 @@
+import"./assets/styles-D0kCQO7F.js";const l=document.querySelector(".date span");l.textContent=new Date().toLocaleString();setInterval(()=>{l.textContent=new Date().toLocaleString()},1e3);function n(c){const t=new Date,e=new Date(c);let o=t.getFullYear()-e.getFullYear();const a=t.getMonth()-e.getMonth(),g=t.getDate()-e.getDate();return(a<0||a===0&&g<0)&&(o-=1),o}console.log(n("1993-04-20"));console.log(n("1993-06-20"));console.log(n("1993-05-20"));
+//# sourceMappingURL=index.js.map

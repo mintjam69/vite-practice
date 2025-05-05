@@ -1,0 +1,2 @@
+const o={form:document.querySelector(".login-form"),inputEmail:document.querySelector("[name='email']"),inputPassword:document.querySelector("[name='password']"),buttonFirst:document.querySelector(".login-form button"),taskForm:document.querySelector(".task-form"),taskList:document.querySelector("#task-list")};function r(e,t){localStorage.setItem(e,JSON.stringify(t))}function n(e){const t=localStorage.getItem(e);return t?JSON.parse(t):null}function a(e){localStorage.removeItem(e)}export{a,n as g,o as r,r as s};
+//# sourceMappingURL=storage-BF_eudZ6.js.map
