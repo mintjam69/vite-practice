@@ -36,3 +36,54 @@
 // checkValue(value)
 //   .then(value => console.log(value))
 //   .catch(err => console.log(err));
+
+// Створи функцію randomTask(), яка повертає проміс. З ймовірністю 50% вона виконується з рядком "Успіх!", інакше — відхиляється з "Помилка!".
+// * Проміс має повертати не рядок, а обʼєкт з властивостями code (відсоток) і message (сам текст)
+// Приклади відповіді:
+// ✅ 73% - Успіх!
+// ❌ 7% - Помилка!
+
+// function randomTask() {
+//     const randomNumber = Math.random() * 100;
+//     return new Promise((res, rej) => {
+//         if (randomNumber >= 50) {
+//             res({ code: randomNumber, message: "Успіх!" })
+//         } else {
+//             rej({ code: randomNumber, message: "Помилка!" })
+//         }
+//     })
+
+// }
+// randomTask().then((data) => console.log(`✅ ${data.code.toFixed(0)}% - ${data.message}`)).catch((error) => console.log(`❌ ${error.code.toFixed(0)}% - ${error.message}`));
+
+
+
+// Створіть функцію countdown(seconds), яка приймає кількість секунд і повертає проміс.
+// Проміс виконується після того, як пройде зазначений час. Функція має виводити у консоль кожну секунду до завершення.
+// countdown(5).then(res => console.log(res));
+// 4...
+// 3...
+// 2...
+// 1...
+// Час вийшов!
+
+
+function countdown(seconds) {
+    let sec = seconds - 1;
+    const secInt = setInterval(() => {
+        console.log(`${sec}...`);
+        sec -= 1;
+        if (sec < 1) {
+            clearInterval(secInt);
+        }
+ }, 1000);
+
+    
+    return new Promise((res)=> {
+    setTimeout(() => {
+        res('Час вийшов!');
+    }, seconds*1000);
+})
+}
+
+countdown(5).then(res => console.log(res));
