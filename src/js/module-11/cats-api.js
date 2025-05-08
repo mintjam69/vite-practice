@@ -17,4 +17,44 @@ export function fetchAllCats() {
     }).catch((error) => {
         console.log(error);
     }); 
+ };
+
+ export function fetchRandomCats () {
+    const BASE_URL = 'https://api.thecatapi.com/v1/images/search';
+    const API_KEY = 'live_CiyBl2DGdQbtRhqwPqEyMf2vf4H3gOsjs1jxhtBzg9HselLoHgS6M5BXCintOvyN';
+
+    const params = new URLSearchParams({
+        limit: 20,
+        api_key: API_KEY,
+    })
+
+    return fetch(`${BASE_URL}?${params}`).then((res) => {
+        if (!res.ok) {
+            throw new Error('Wrong request');
+        }
+
+        return res.json();
+    }).catch((error) => {
+        console.log(error);
+    }); 
+ }
+
+ export function fetchRandomDogs (){
+    const BASE_URL = 'https://api.thedogapi.com/v1/images/search';
+    const API_KEY = 'live_CiyBl2DGdQbtRhqwPqEyMf2vf4H3gOsjs1jxhtBzg9HselLoHgS6M5BXCintOvyN';
+
+    const params = new URLSearchParams({
+        limit: 20,
+        api_key: API_KEY,
+    })
+
+    return fetch(`${BASE_URL}?${params}`).then((res) => {
+        if (!res.ok) {
+            throw new Error('Wrong request');
+        }
+
+        return res.json();
+    }).catch((error) => {
+        console.log(error);
+    }); 
  }
