@@ -18,17 +18,20 @@ import {
   showElement,
   hideElement,
   simpleLightbox,
+  createBreedsMarkup,
 } from './render-functions';
 
 const container = document.querySelector('.card-container');
 const getCatsBtn = document.querySelector('.get-cats');
 const getDogsBtn = document.querySelector('.get-dogs');
 const loader = document.querySelector('.loader');
+const breedsList = document.querySelector('#breeds-list');
 
 fetchAllCats().then(res => {
   console.log(res);
 
   container.innerHTML = createMarkup(res);
+  breedsList.innerHTML = createBreedsMarkup(res);
 });
 
 getCatsBtn.addEventListener('click', getRandomCats);
@@ -68,3 +71,12 @@ function getRandomDogs() {
       hideElement(loader);
     });
 }
+
+/**
+ * 1) Ти вже отримуєш всі породи котиків при завантаженні. Тобі це знадобиться для додаткового функціоналу нашого застосунку.
+ * 2) В інтерфейсі зʼявилась форма пошуку з прив'язаним дропдауном для всіх breeds. Ти маєш при запиті діставати породу котика і його айді для заповнення інпута випадаючим списком з усіма породами.
+ * 3) Користувач в формі вводить або обирає необхідний breed з дропдауна і при сабміті форми
+ *  виконується GET запит за зображеннями.
+ * 4) Після запиту під формою відображаються картки з зображеннями котиків обраної породи.
+ * 5) Під час запиту під формую відображається loader
+ */

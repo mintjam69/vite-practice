@@ -44,3 +44,9 @@ export function showElement(element) {
 export function hideElement(element) {
   element.classList.add('hidden');
 }
+
+export function createBreedsMarkup(arr) {
+  return arr
+    .map(({ id, name }) => `<option id='${id}' value="${name}"></option>`)
+    .join('');
+}
