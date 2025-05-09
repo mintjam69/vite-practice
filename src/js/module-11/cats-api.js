@@ -96,3 +96,12 @@ export function fetchRandomDogs() {
       console.log(error);
     });
 }
+
+
+export function fetchCatsByBreed(id) {
+  return axios('/images/search', { params: { limit: 50, breed_ids: id } })
+    .then(res => res.data)
+    .catch(error => {
+      console.log(error);
+    });
+}

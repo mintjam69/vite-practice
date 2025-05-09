@@ -11,7 +11,12 @@
  * 5) При кліку на рандомного котика/собачки відображай модальне вікно з зображенням тваринки
  */
 
-import { fetchAllCats, fetchRandomCats, fetchRandomDogs } from './cats-api';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
+import icon from '../../img/javascript.svg';
+
+import { fetchAllCats, fetchRandomCats, fetchRandomDogs, fetchCatsByBreed } from './cats-api';
 import {
   createMarkup,
   createRandomMarkup,
@@ -26,6 +31,8 @@ const getCatsBtn = document.querySelector('.get-cats');
 const getDogsBtn = document.querySelector('.get-dogs');
 const loader = document.querySelector('.loader');
 const breedsList = document.querySelector('#breeds-list');
+const formEl = document.querySelector('.search-form');
+const inputEl = document.querySelector('.input-field');
 
 fetchAllCats().then(res => {
   console.log(res);
@@ -36,6 +43,7 @@ fetchAllCats().then(res => {
 
 getCatsBtn.addEventListener('click', getRandomCats);
 getDogsBtn.addEventListener('click', getRandomDogs);
+formEl.addEventListener('submit', getBreedOnSubmit);
 
 function getRandomCats() {
   showElement(loader);
@@ -80,3 +88,34 @@ function getRandomDogs() {
  * 4) Після запиту під формою відображаються картки з зображеннями котиків обраної породи.
  * 5) Під час запиту під формую відображається loader
  */
+
+function getBreedOnSubmit(e) {
+  e.preventDefault();
+  // console.log(e.target);
+
+  const selectedBreed = [...breedsList.children].find(option => option.value === inputEl.value);
+  if (!selectedBreed) {
+    iziToast.warning({
+      message: `Choose breed to find cats!`,
+      iconUrl: icon,
+    });
+    return
+  }
+  showElement(loader);
+  fetchCatsByBreed(selectedBreed.id)
+    .then(res => {
+      container.innerHTML = createRandomMarkup(res);
+      simpleLightbox.refresh();
+      iziToast.success({
+        message: `You found ${res.length} cats`,
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .finally(() => {
+      hideElement(loader);
+      formEl.reset();
+    });
+}
+
