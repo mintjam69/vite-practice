@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script type="module" crossorigin src="/vite-practice/cats.js"></script>
-    <link rel="modulepreload" crossorigin href="/vite-practice/assets/styles-Dw0C7vT8.js">
-    <link rel="stylesheet" crossorigin href="/vite-practice/assets/styles-CgY78lFa.css">
+    <link rel="modulepreload" crossorigin href="/vite-practice/assets/styles-D9YqluLv.js">
+    <link rel="modulepreload" crossorigin href="/vite-practice/assets/vendor-frHSA4Lh.js">
+    <link rel="stylesheet" crossorigin href="/vite-practice/assets/styles-DB56-jL7.css">
+    <link rel="stylesheet" crossorigin href="/vite-practice/assets/vendor-DumFYO8Z.css">
   </head>
   <body>
     <div class="btns">
@@ -16,6 +18,24 @@
       <button type="submit" class="btn get-dogs">
         Get 20 random dogs photos
       </button>
+    </div>
+
+    <!-- Форма пошуку -->
+    <div class="wrapper">
+      <form id="search-form" class="search-form">
+        <div class="form-group">
+          <label for="breed-input">Оберіть породу кота:</label>
+          <input
+            list="breeds-list"
+            id="breed-input"
+            class="input-field"
+            placeholder="Наприклад: Bengal"
+            autocomplete="off"
+          />
+          <datalist id="breeds-list"></datalist>
+        </div>
+        <button type="submit" class="btn">Знайти зображення</button>
+      </form>
     </div>
 
     <!-- Лоадер -->
