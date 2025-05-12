@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <a href="./index.html">Back</a>
+    <section class="gallery-section">
+      <div class="container">
+        <form class="search-form js-search-form">
+          <input type="text" name="query" class="search-input" />
+          <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <span class="loader hidden"></span>
+
+        <ul class="gallery"></ul>
+        <div id="tui-pagination-container" class="tui-pagination"></div>
+      </div>
+    </section>
+
+    <script type="module" src="./js/module-12/gallery.js"></script>
+  </body>
+</html>

@@ -30,7 +30,6 @@
 
 /* Ховаємо елементи */
 
-
 /* Контейнер для картки */
 .card-container {
   margin-top: 20px;
@@ -89,7 +88,7 @@
 /* Форма пошуку */
 .search-form {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 10px;
 }
 
@@ -110,14 +109,13 @@
   margin-top: 10px;
 }
 
-
 .loader {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   display: block;
   position: relative;
-  border: 2px solid #FF3D00;
+  border: 2px solid #ff3d00;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   margin: 0 auto;
