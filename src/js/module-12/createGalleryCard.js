@@ -4,7 +4,7 @@ export function createGalleryCard(arr) {
       return `
           <li class="gallery-item">
             <img src="${small}" alt="${alt_description}" class="gallery-img" />
-            <p class="gallery-image-descr">${description || alt_description}</p>
+            <p class="gallery-image-descr">${alt_description}</p>
           </li>
     `;
     })
